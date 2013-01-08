@@ -1,0 +1,8 @@
+<script type="text/html" id="editProject">
+  <form action="/projects/<%%= id %>" method="post" data-remote="true">
+    <input name="_method" type="hidden" value="put" />
+    <input type="hidden" name="project[id]" value="<%%= id %>" />
+    <input type="text" name="project[name]" value="<%%= name %>" id="project_name" />
+    <input type="submit" value="Edit" onclick="if(/^\s*$/.test($('#project_name').val())) { return false; };" />
+  </form>
+</script>

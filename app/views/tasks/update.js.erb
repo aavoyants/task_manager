@@ -1,0 +1,8 @@
+if ($('#notice').length == 1) { $('#notice').hide(); }
+if ($('#alert').length == 1) { $('#alert').hide(); }
+
+<% if params[:direction] %>
+  $('#project_<%= @task.project_id %>_tasks').html("<%=j render @task.project.tasks %>");
+<% else %>
+  $('#task_<%= @task.id %>').replaceWith("<%=j render @task %>");
+<% end %>

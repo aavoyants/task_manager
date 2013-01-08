@@ -1,0 +1,6 @@
+if ($('#notice').length == 1) { $('#notice').hide(); }
+if ($('#alert').length == 1) { $('#alert').hide(); }
+
+$('#projects').append("<%=j render @project %>");
+MainCSS.perform();
+$('#new_project_name').val('');

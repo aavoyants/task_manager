@@ -1,0 +1,6 @@
+if ($('#notice').length == 1) { $('#notice').hide(); }
+if ($('#alert').length == 1) { $('#alert').hide(); }
+
+$('#project_<%= @task.project_id %>_tasks').html("<%=j render @task.project.tasks %>");
+$('#t<%= @task.project_id %>').val('');
+$('#task_<%= @task.id %>').css({opacity: 0}).animate({opacity: 1}, 700);

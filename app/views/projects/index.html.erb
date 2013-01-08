@@ -1,0 +1,13 @@
+<div id="projects">
+  <%= render @projects %>
+</div>
+
+<br />
+
+<%= form_for(Project.new, remote: true) do |f| %>
+  <%= f.text_field :name, id: "new_project_name", size: nil %>
+  <%= f.submit 'Create Project', onclick: "if(/^\s*$/.test($('#new_project_name').val())) { return false; };".html_safe %>
+<% end %>
+
+<%= render 'projects/js/edit' %>
+<%= render 'tasks/js/edit' %>

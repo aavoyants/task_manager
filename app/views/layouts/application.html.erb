@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TaskManager</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+</head>
+<body>
+<div id="wrapper">
+<%= render 'shared/notice', notice: notice if notice %>
+<%= render 'shared/alert', alert: alert if alert %>
+<% if current_user %>
+  <div class="right">
+    <%= link_to("Log out", destroy_user_session_path, :method => :delete, style: "font-size: 1.2em; color: #000;") %>
+  </div>
+<% end %>
+  <h1>Task Manager</h1>
+  <%= yield %>
+</div>
+</body>
+</html>

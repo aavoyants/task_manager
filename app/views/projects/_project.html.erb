@@ -1,0 +1,27 @@
+<div class="project" id="project_<%= project.id %>">
+  <div class="project_name" style="height: 40px;">
+    <h2><%= project.name %></h2>
+    <div class="right">
+      <ul class="icons ui-widget ui-helper-clearfix">
+        <li class="ui-state-default ui-corner-all">
+          <span class="ui-icon ui-icon-pencil" onclick="$('#project_<%= project.id %>').html(_.template($('#editProject').html(), {id: <%= project.id %>, name: '<%=j project.name %>'})); MainCSS.perform(); return false;"></span>
+        </li>
+        <li class="ui-state-default ui-corner-all">
+          <%= link_to '<span class="ui-icon ui-icon-trash"></span>'.html_safe, project, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="task_add">
+    <%= form_tag tasks_url, method: :post, remote: true do %>
+      <%= hidden_field_tag "task[project_id]", project.id %>
+      <%= text_field_tag "task[name]", "", id: "t#{project.id}" %>
+      <%= submit_tag "Add Task", onclick: "if(/^\s*$/.test($('#t#{project.id}').val())) { return false; };".html_safe %>
+    <% end %>
+  </div>
+
+  <div id="project_<%= project.id %>_tasks">
+    <%= render project.tasks %>
+  </div>
+</div>

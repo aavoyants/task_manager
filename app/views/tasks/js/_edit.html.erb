@@ -1,0 +1,9 @@
+<script type="text/html" id="editTask">
+  <form action="/tasks/<%%= id %>" method="post" data-remote="true">
+    <input name="_method" type="hidden" value="put" />
+    <input type="hidden" name="task[id]" value="<%%= id %>" />
+    <input type="text" name="task[name]" value="<%%= name %>" id="task_name" />
+    <input type="text" name="task[expires_on]" value="<%%= expires_on %>" id="task_expires_on" />
+    <input type="submit" value="Edit" onclick="if(/^\s*$/.test($('#task_name').val())) { return false; };" />
+  </form>
+</script>

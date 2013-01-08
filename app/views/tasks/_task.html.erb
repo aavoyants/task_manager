@@ -1,0 +1,24 @@
+<div class="task" id="task_<%= task.id %>">
+  <div class="left" style="margin-top: 7px;">
+    <%= form_for(task, remote: true) do |f| %>
+      <%= f.check_box :is_done, onchange: "$(this).closest('form').trigger('submit');".html_safe %>
+    <% end %>
+  </div>
+  <div class="task_name<%= task_class(task) %>"><%= task.name %></div>
+  <div class="right">
+    <ul class="icons ui-widget ui-helper-clearfix">
+      <li class="ui-state-default ui-corner-all">
+        <%= link_to '<span class="ui-icon ui-icon-arrow-1-n"></span>'.html_safe, task_path(task, direction: 1), method: :put, remote: true %>
+      </li>
+      <li class="ui-state-default ui-corner-all">
+        <%= link_to '<span class="ui-icon ui-icon-arrow-1-s"></span>'.html_safe, task_path(task, direction: -1), method: :put, remote: true %>
+      </li>
+      <li class="ui-state-default ui-corner-all">
+        <%= link_to '<span class="ui-icon ui-icon-pencil"></span>'.html_safe, '#', onclick: "$('#task_#{task.id}').addClass('task_edit').html(_.template($('#editTask').html(), {id: #{task.id}, name: '#{j task.name}', expires_on: '#{task.expires_on.strftime("%d-%m-%Y")}'})); $('#task_expires_on').datepicker({ dateFormat: 'dd-mm-yy' }); MainCSS.perform(); return false;".html_safe %>
+      </li>
+      <li class="ui-state-default ui-corner-all">
+        <%= link_to '<span class="ui-icon ui-icon-trash"></span>'.html_safe, task, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, style: "text-decoration: none;" %>
+      </li>
+    </ul>
+  </div>
+</div>
